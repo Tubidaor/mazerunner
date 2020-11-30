@@ -18,7 +18,6 @@ export default class MazeOnePage extends Component {
   componentDidMount() {
     if(this.getDifficulty()) {
       const difficulty = this.getDifficulty()
-      console.dir(difficulty.level)
       this.setState(difficulty.level)
     }
   }
@@ -61,7 +60,6 @@ export default class MazeOnePage extends Component {
   }
 
   saveDifficulty(difficulty) {
-    console.log(difficulty)
     window.sessionStorage.setItem("difficulty", JSON.stringify({level: difficulty}))
   }
 

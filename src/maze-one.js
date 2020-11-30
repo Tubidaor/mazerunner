@@ -81,7 +81,14 @@ export default function Maze(props) {
   let goal = new Player()
   let w = playerOne.length
   let currentIndex = 0
-  // let rowLength = props.height / props.length
+  let bgColor
+
+
+  function backgroundRandom() {
+    if(!bgColor) {
+      bgColor = `rgba(${Math.floor(Math.random() * 255)},  ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`
+    }
+  }
 
   
   function setup(p5, canvasParentRef) {
@@ -96,6 +103,9 @@ export default function Maze(props) {
     goal.y = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     playerOne.img = p5.loadImage(chumbis_strawberry)
     goal.img = p5.loadImage(riggins)
+    backgroundRandom()
+
+    
     
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
@@ -109,7 +119,7 @@ export default function Maze(props) {
   }
   
   function draw(p5) {
-    p5.background(255, 15, 15);
+    p5.background(bgColor)
     for (let i = 0; i < grid.length; i++) {
       grid[i].show(p5)
     }
