@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-// import './App.css';
 import Maze from './maze-one';
 import spaceship from './assets/spaceship.jpg'
 
@@ -60,7 +59,9 @@ export default class MazeOnePage extends Component {
   }
 
   saveDifficulty(difficulty) {
-    window.sessionStorage.setItem("difficulty", JSON.stringify({level: difficulty}))
+    window.sessionStorage.setItem(
+      "difficulty", JSON.stringify({level: difficulty})
+    )
   }
 
   render() {
@@ -68,7 +69,7 @@ export default class MazeOnePage extends Component {
     return (
       <div className="App">
         <div className="youWon" id="youWon">
-          <img className="spaceship" alt="spaceship - you won" src={spaceship}></img>
+          <img className="spaceship" alt="spaceship - you won" src={spaceship}/>
           <p>You won!</p>
         </div>
         <div className="btn-con">

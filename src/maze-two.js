@@ -15,13 +15,13 @@ export default function MazeTwo(props) {
   }
 }
 
-    function Cell(i, j) {
-      this.i = i;
-      this.j = j;
-      this.walls = [true, true, true, true];
-      this.visited = false;
+  function Cell(i, j) {
+    this.i = i;
+    this.j = j;
+    this.walls = [true, true, true, true];
+    this.visited = false;
 
-      this.checkNeighbors = function() {
+    this.checkNeighbors = function() {
       let neighbors = [];
       let top = grid[index(i, j - 1)]
       let right = grid[index(i + 1, j)]
@@ -80,8 +80,6 @@ export default function MazeTwo(props) {
   let goal = new Player()
   let w = playerOne.length
   let currentIndex = 0
-  // let rowLength = props.height / props.length
-
   
   function setup(p5, canvasParentRef) {
     const { width, height, length } = props
@@ -90,7 +88,8 @@ export default function MazeTwo(props) {
     rows = Math.floor(height / w);
     playerOne.x = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     playerOne.y = (Math.floor(Math.random() * (height / length)) * length) + 2.5
-    currentIndex = (((playerOne.y - 2.5) / playerOne.length) * cols) + ((playerOne.x - 2.5) / playerOne.length)
+    currentIndex = (((playerOne.y - 2.5) / playerOne.length) * cols) +
+      ((playerOne.x - 2.5) / playerOne.length)
     goal.x = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     goal.y = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     playerOne.img = p5.loadImage(cal)
@@ -142,7 +141,8 @@ export default function MazeTwo(props) {
   function checkForWall(direction) {
     if(direction === "ArrowUp") {
       currentIndex = currentIndex - rows
-      if(!grid[returnIndex(currentIndex)].walls[2] && !grid[currentIndex + rows].walls[0]) {
+      if(!grid[returnIndex(currentIndex)].walls[2] &&
+        !grid[currentIndex + rows].walls[0]) {
         return "No walls"
       } else { currentIndex = currentIndex + rows
       }
@@ -150,7 +150,8 @@ export default function MazeTwo(props) {
     }
     if(direction === "ArrowDown") {
       currentIndex = currentIndex + rows
-      if(!grid[returnIndex(currentIndex)].walls[0] && !grid[currentIndex - rows].walls[2]) {
+      if(!grid[returnIndex(currentIndex)].walls[0] &&
+        !grid[currentIndex - rows].walls[2]) {
         return "No walls"
       } else { currentIndex = currentIndex - rows
       
@@ -159,7 +160,8 @@ export default function MazeTwo(props) {
     }
     if(direction === "ArrowRight") {
       currentIndex = currentIndex + 1
-      if(!grid[returnIndex(currentIndex)].walls[3] && !grid[currentIndex - 1].walls[1]) {
+      if(!grid[returnIndex(currentIndex)].walls[3] &&
+        !grid[currentIndex - 1].walls[1]) {
         return "No walls"
       } else { currentIndex = currentIndex - 1
       }
@@ -167,7 +169,8 @@ export default function MazeTwo(props) {
     }
     if(direction === "ArrowLeft") {
       currentIndex = currentIndex - 1
-      if(!grid[returnIndex(currentIndex)].walls[1] && !grid[currentIndex + 1].walls[3]) {
+      if(!grid[returnIndex(currentIndex)].walls[1] &&
+        !grid[currentIndex + 1].walls[3]) {
         return "No walls"
       } else { currentIndex = currentIndex + 1
       }

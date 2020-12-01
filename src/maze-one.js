@@ -1,6 +1,6 @@
 import React from 'react'
 import Sketch from "react-p5"
-import chumbis_glasses from './assets/chumbis_glasses.jpg'
+// import chumbis_glasses from './assets/chumbis_glasses.jpg'
 import riggins from './assets/riggins.jpg'
 import chumbis_strawberry from './assets/chumbis_strawberry.jpg'
 
@@ -16,13 +16,13 @@ export default function Maze(props) {
   }
 }
 
-    function Cell(i, j) {
-      this.i = i;
-      this.j = j;
-      this.walls = [true, true, true, true];
-      this.visited = false;
+  function Cell(i, j) {
+    this.i = i;
+    this.j = j;
+    this.walls = [true, true, true, true];
+    this.visited = false;
 
-      this.checkNeighbors = function() {
+    this.checkNeighbors = function() {
       let neighbors = [];
       let top = grid[index(i, j - 1)]
       let right = grid[index(i + 1, j)]
@@ -86,7 +86,9 @@ export default function Maze(props) {
 
   function backgroundRandom() {
     if(!bgColor) {
-      bgColor = `rgba(${Math.floor(Math.random() * 255)},  ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, 1)`
+      bgColor = `rgba(${Math.floor(Math.random() * 255)},
+        ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)},
+        1)`
     }
   }
 
@@ -98,7 +100,8 @@ export default function Maze(props) {
     rows = Math.floor(height / w);
     playerOne.x = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     playerOne.y = (Math.floor(Math.random() * (height / length)) * length) + 2.5
-    currentIndex = (((playerOne.y - 2.5) / playerOne.length) * cols) + ((playerOne.x - 2.5) / playerOne.length)
+    currentIndex = (((playerOne.y - 2.5) / playerOne.length) * cols) +
+      ((playerOne.x - 2.5) / playerOne.length)
     goal.x = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     goal.y = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     playerOne.img = p5.loadImage(chumbis_strawberry)
@@ -153,7 +156,8 @@ export default function Maze(props) {
   function checkForWall(direction) {
     if(direction === "ArrowUp") {
       currentIndex = currentIndex - rows
-      if(!grid[returnIndex(currentIndex)].walls[2] && !grid[currentIndex + rows].walls[0]) {
+      if(!grid[returnIndex(currentIndex)].walls[2] &&
+        !grid[currentIndex + rows].walls[0]) {
         return "No walls"
       } else { currentIndex = currentIndex + rows
       }
@@ -161,7 +165,8 @@ export default function Maze(props) {
     }
     if(direction === "ArrowDown") {
       currentIndex = currentIndex + rows
-      if(!grid[returnIndex(currentIndex)].walls[0] && !grid[currentIndex - rows].walls[2]) {
+      if(!grid[returnIndex(currentIndex)].walls[0] &&
+        !grid[currentIndex - rows].walls[2]) {
         return "No walls"
       } else { currentIndex = currentIndex - rows
       
@@ -170,7 +175,8 @@ export default function Maze(props) {
     }
     if(direction === "ArrowRight") {
       currentIndex = currentIndex + 1
-      if(!grid[returnIndex(currentIndex)].walls[3] && !grid[currentIndex - 1].walls[1]) {
+      if(!grid[returnIndex(currentIndex)].walls[3] &&
+        !grid[currentIndex - 1].walls[1]) {
         return "No walls"
       } else { currentIndex = currentIndex - 1
       }
@@ -178,7 +184,8 @@ export default function Maze(props) {
     }
     if(direction === "ArrowLeft") {
       currentIndex = currentIndex - 1
-      if(!grid[returnIndex(currentIndex)].walls[1] && !grid[currentIndex + 1].walls[3]) {
+      if(!grid[returnIndex(currentIndex)].walls[1] &&
+        !grid[currentIndex + 1].walls[3]) {
         return "No walls"
       } else { currentIndex = currentIndex + 1
       }
