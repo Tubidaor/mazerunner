@@ -1,1 +1,1 @@
-My daughter loves mazes so I created a random maze generator for her to build analytical and dexterity skills. You can swap out the images for your own liking.
+My daughter loves mazes so I created a random maze generator for her to build analytical and dexterity skills. I also decided it would be a good idea to help her learn her alphabet so I made the goal to reach a variable letter. You can swap out the images for your own liking.

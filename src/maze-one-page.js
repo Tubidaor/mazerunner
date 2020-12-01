@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Maze from './maze-one';
+import Maze from './maze-one'
 import spaceship from './assets/spaceship.jpg'
 
 export default class MazeOnePage extends Component {
@@ -10,16 +10,21 @@ export default class MazeOnePage extends Component {
         difficulty: "easy",
         height: 400,
         width: 400,
-        length: 40
+        length: 40,
+        letter: 'XX'
       }
   }
 
   componentDidMount() {
+    if(this.state.letter === 'XX') {
+      this.returnLetter()
+    }
     if(this.getDifficulty()) {
       const difficulty = this.getDifficulty()
       this.setState(difficulty.level)
     }
   }
+
 
   setDifficulty = (difficulty) => {
     let level
@@ -64,8 +69,67 @@ export default class MazeOnePage extends Component {
     )
   }
 
+  
+  returnLetter() {
+    const letters = [
+      "A",
+      "B",
+      "C",
+      "D",
+      "E",
+      "F",
+      "G",
+      "H",
+      "I",
+      "J",
+      "K",
+      "L",
+      "M",
+      "N",
+      "O",
+      "P",
+      "Q",
+      "R",
+      "S",
+      "T",
+      "U",
+      "V",
+      "W",
+      "X",
+      "Y",
+      "Z"
+    ]
+
+    this.setState({
+      letter: letters[Math.floor(Math.random() * 26)]
+    })
+  }
+  
   render() {
-    const { height, width, length } = this.state
+    const { height, width, length, letter } = this.state
+    let num = 0
+    let time = 3000
+    function talk() {
+      var msg = new SpeechSynthesisUtterance()
+      msg.text = `...Get to the letter... ${letter}`
+      setTimeout(function() {window.speechSynthesis.speak(msg)}, time)
+    }
+
+    function speak() {
+      if(num === 61) {
+        return
+      }
+      if(letter !== "XX" && (num % 10 === 0)) {
+        talk()
+      }
+      num = num + 1
+      time = time + 2000
+      speak()
+    }
+  
+      
+    speak()
+  
     return (
       <div className="App">
         <div className="youWon" id="youWon">
@@ -77,7 +141,12 @@ export default class MazeOnePage extends Component {
           <button onClick={e => this.setDifficulty("medium")}>Medium</button>
           <button onClick={e => this.setDifficulty("hard")}>Hard</button>
         </div>
-        <Maze height={height} width={width} length={length}/>
+        <div className='letter'>
+          <header>
+            <h1>Get to the letter "{letter}"</h1>
+          </header>
+        </div>
+        <Maze height={height} width={width} length={length} letter={letter}/>
       </div>
     );
 }

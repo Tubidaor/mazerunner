@@ -1,7 +1,7 @@
 import React from 'react'
 import Sketch from "react-p5"
 import cal from './assets/cal.jpeg'
-import danKatie from './assets/dankatie.jpeg'
+import Quicksand_Bold from './assets/fonts/Quicksand-Regular.otf'
 
 export default function MazeTwo(props) {
   class Player {
@@ -12,6 +12,9 @@ export default function MazeTwo(props) {
     }
   display(p5) {
     p5.image(this.img, this.x, this.y)
+  }
+  displayDiv(p5) {
+    p5.createDiv('Div', "Hello")
   }
 }
 
@@ -80,7 +83,22 @@ export default function MazeTwo(props) {
   let goal = new Player()
   let w = playerOne.length
   let currentIndex = 0
-  
+  let bgColor
+  let font
+
+
+  function backgroundRandom() {
+    if(!bgColor) {
+      bgColor = `rgba(${Math.floor(Math.random() * (255 -100) + 100)},
+        ${Math.floor(Math.random() * (255 - 100) + 100)}, ${Math.floor(Math.random() * (255 - 100) + 100)},
+        1)`
+    }
+  }
+
+  function preload(p5) {
+    font = p5.loadFont(Quicksand_Bold);
+  }
+
   function setup(p5, canvasParentRef) {
     const { width, height, length } = props
     p5.createCanvas(width, height).parent(canvasParentRef);
@@ -93,7 +111,10 @@ export default function MazeTwo(props) {
     goal.x = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     goal.y = (Math.floor(Math.random() * (height / length)) * length) + 2.5
     playerOne.img = p5.loadImage(cal)
-    goal.img = p5.loadImage(danKatie)
+    p5.textFont(font)
+    backgroundRandom()
+
+    
     
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
@@ -107,15 +128,17 @@ export default function MazeTwo(props) {
   }
   
   function draw(p5) {
-    p5.background(255, 15, 15);
+    p5.background(bgColor)
     for (let i = 0; i < grid.length; i++) {
       grid[i].show(p5)
     }
     // p5.frameRate()
     playerOne.display(p5)
     playerOne.img.resize( playerOne.length - 2.5, playerOne.length - 2.5)
-    goal.display(p5)
-    goal.img.resize(goal.length - 2.5, goal.length - 2.5)
+    p5.text(props.letter, goal.x, goal.y)
+    p5.textSize(32)
+    p5.textAlign(p5.LEFT, p5.TOP)
+    p5.fill('#ed225d')
     current.visited = true;
     let next = current.checkNeighbors()
 
@@ -240,6 +263,5 @@ export default function MazeTwo(props) {
     }
   }
 
-  return <Sketch setup={setup} keyPressed={keyPressed} draw={draw} />
+  return <Sketch preload={preload} setup={setup} keyPressed={keyPressed} draw={draw} />
 }
-
