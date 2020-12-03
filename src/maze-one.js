@@ -1,7 +1,7 @@
 import React from 'react'
 import Sketch from "react-p5"
 // import chumbis_glasses from './assets/chumbis_glasses.jpg'
-import riggins from './assets/riggins.jpg'
+// import riggins from './assets/riggins.jpg'
 import chumbis_strawberry from './assets/chumbis_strawberry.jpg'
 import Quicksand_Bold from './assets/fonts/Quicksand-Regular.otf'
 
@@ -12,13 +12,10 @@ export default function Maze(props) {
       this.y = 2.5
       this.length = props.length
     }
-  display(p5) {
-    p5.image(this.img, this.x, this.y)
+    display(p5) {
+      p5.image(this.img, this.x, this.y)
+    }
   }
-  displayDiv(p5) {
-    p5.createDiv('Div', "Hello")
-  }
-}
 
   function Cell(i, j) {
     this.i = i;
@@ -88,7 +85,6 @@ export default function Maze(props) {
   let bgColor
   let font
 
-
   function backgroundRandom() {
     if(!bgColor) {
       bgColor = `rgba(${Math.floor(Math.random() * (255 -100) + 100)},
@@ -116,8 +112,6 @@ export default function Maze(props) {
     p5.textFont(font)
     backgroundRandom()
 
-    
-    
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
         var cell = new Cell(i, j)
@@ -265,6 +259,13 @@ export default function Maze(props) {
     }
   }
 
-  return <Sketch preload={preload} setup={setup} keyPressed={keyPressed} draw={draw} />
+  return (
+    <Sketch
+      preload={preload} 
+      setup={setup}
+      keyPressed={keyPressed}
+      draw={draw}
+    />
+  )
 }
 

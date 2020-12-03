@@ -25,7 +25,6 @@ export default class MazeTwoPage extends Component {
     }
   }
 
-
   setDifficulty = (difficulty) => {
     let level
     const easy = {
@@ -127,7 +126,6 @@ export default class MazeTwoPage extends Component {
       speak()
     }
   
-      
     speak()
   
     return (
@@ -148,6 +146,6 @@ export default class MazeTwoPage extends Component {
         </div>
         <MazeTwo height={height} width={width} length={length} letter={letter}/>
       </div>
-    );
-}
+    )
+  }
 }

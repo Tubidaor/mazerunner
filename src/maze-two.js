@@ -10,13 +10,10 @@ export default function MazeTwo(props) {
       this.y = 2.5
       this.length = props.length
     }
-  display(p5) {
-    p5.image(this.img, this.x, this.y)
+    display(p5) {
+      p5.image(this.img, this.x, this.y)
+    }
   }
-  displayDiv(p5) {
-    p5.createDiv('Div', "Hello")
-  }
-}
 
   function Cell(i, j) {
     this.i = i;
@@ -114,8 +111,6 @@ export default function MazeTwo(props) {
     p5.textFont(font)
     backgroundRandom()
 
-    
-    
     for (let j = 0; j < rows; j++) {
       for (let i = 0; i < cols; i++) {
         var cell = new Cell(i, j)
@@ -263,5 +258,12 @@ export default function MazeTwo(props) {
     }
   }
 
-  return <Sketch preload={preload} setup={setup} keyPressed={keyPressed} draw={draw} />
+  return (
+    <Sketch
+      preload={preload}
+      setup={setup}
+      keyPressed={keyPressed}
+      draw={draw}
+    />
+  )
 }

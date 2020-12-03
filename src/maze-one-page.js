@@ -25,7 +25,6 @@ export default class MazeOnePage extends Component {
     }
   }
 
-
   setDifficulty = (difficulty) => {
     let level
     const easy = {
@@ -69,7 +68,6 @@ export default class MazeOnePage extends Component {
     )
   }
 
-  
   returnLetter() {
     const letters = [
       "A",
@@ -126,7 +124,6 @@ export default class MazeOnePage extends Component {
       time = time + 2000
       speak()
     }
-  
       
     speak()
   
@@ -148,6 +145,6 @@ export default class MazeOnePage extends Component {
         </div>
         <Maze height={height} width={width} length={length} letter={letter}/>
       </div>
-    );
-}
+    )
+  }
 }
